@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-/* Box sizing global pour éviter les débordements */
+/* Box sizing global */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -175,7 +175,7 @@ li:hover {
   box-shadow: 0 7px 22px #0d5fcccc;
 }
 
-/* Bouton déconnexion classique en haut à droite (desktop) */
+/* Déconnexion bouton (desktop) */
 #logoutBtn {
   position: fixed;
   top: 20px;
@@ -199,7 +199,12 @@ li:hover {
   box-shadow: 0 8px 28px #1a84ffcc;
 }
 
-/* Bouton hamburger (mobile) caché desktop */
+/* Hamburger bouton (mobile) caché desktop */
 #hamburgerBtn {
+  display: none;
+}
+
+/* Menu mobile caché */
+#mobileMenu {
   display: none;
 }

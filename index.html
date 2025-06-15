@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Notes</title>
+  <title>Mes Notes</title>
   <link rel="stylesheet" href="style-desktop.css" media="screen and (min-width: 601px)" />
   <link rel="stylesheet" href="style-mobile.css" media="screen and (max-width: 600px)" />
 </head>
@@ -22,11 +22,22 @@
   </div>
 
   <script>
+    // Vérification de connexion
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'login.html';
+    }
+
+    // Gestion déconnexion
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('username');
+      window.location.href = 'login.html';
+    });
+
     const noteInput = document.getElementById('noteInput');
     const addNoteBtn = document.getElementById('addNoteBtn');
     const notesList = document.getElementById('notesList');
 
-    // Fonction pour formater la date
     function formatDate(date) {
       return date.toLocaleDateString('fr-FR', {
         day: '2-digit',
@@ -37,7 +48,6 @@
       });
     }
 
-    // Fonction pour ajouter une note dans la liste
     function addNote(text) {
       if (!text.trim()) return;
 
@@ -71,7 +81,6 @@
       noteInput.focus();
     });
 
-    // Optionnel: ajout avec Ctrl+Enter dans la textarea
     noteInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && e.ctrlKey) {
         addNoteBtn.click();

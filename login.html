@@ -2,26 +2,101 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Connexion</title>
-  <link rel="stylesheet" href="style_login.css" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #1e1e2f;
+      color: #f0f0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: #2c2c44;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 320px;
+    }
+    input {
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      background: #3a3a5a;
+      color: #f0f0f5;
+      box-shadow: inset 0 0 12px #4aa6ffaa;
+      transition: background 0.3s ease;
+    }
+    input::placeholder {
+      color: #9bbcee;
+      font-style: italic;
+    }
+    input:focus {
+      outline: none;
+      background: #4f4f72;
+      box-shadow: inset 0 0 15px #4aa6ffee;
+    }
+    button {
+      background-color: #4aa6ff;
+      color: #1e1e2f;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 14px 0;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px #4aa6ffbb;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #1a84ff;
+      box-shadow: 0 8px 28px #1a84ffcc;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+      color: #4aa6ff;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      user-select: none;
+      text-shadow: 0 2px 8px #4aa6ffaa;
+    }
+  </style>
 </head>
 <body>
-  <div class="login-container">
+  <form id="loginForm">
     <h1>Connexion</h1>
-
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
-      <input type="password" id="password" placeholder="Mot de passe" required />
-      <button type="submit">Se connecter</button>
-    </form>
-  </div>
+    <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+    <input type="password" id="password" placeholder="Mot de passe" required />
+    <button type="submit">Se connecter</button>
+  </form>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Empêche l'envoi classique du formulaire
-      // Ici tu pourrais ajouter vérification des identifiants si besoin
-      window.location.href = 'index.html'; // Redirection vers la page principale
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username && password) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', username);
+        window.location.href = 'index.html';
+      } else {
+        alert('Veuillez entrer vos identifiants');
+      }
     });
   </script>
 </body>
