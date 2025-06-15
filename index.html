@@ -7,10 +7,6 @@
   <link rel="stylesheet" href="style_index.css" />
 </head>
 <body>
-
-  <!-- Bouton déconnexion hors container -->
-  <button id="logoutBtn" onclick="window.location.href='login.html'">Déconnexion</button>
-
   <div class="container">
     <h1>Il m'arrive toujours des bonnes choses !!!</h1>
 
@@ -21,6 +17,38 @@
     <ul id="notesList"></ul>
   </div>
 
+  <!-- Bouton déconnexion classique (visible desktop uniquement) -->
+  <button id="logoutBtn" onclick="window.location.href='login.html'">Déconnexion</button>
+
+  <!-- Bouton hamburger (mobile) -->
+  <button id="hamburgerBtn" aria-label="Menu">&#9776;</button>
+
+  <!-- Menu mobile caché -->
+  <nav id="mobileMenu" class="hidden" aria-label="Menu mobile">
+    <ul>
+      <li><button id="logoutMobileBtn">Déconnexion</button></li>
+    </ul>
+  </nav>
+
   <script src="script.js"></script>
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const logoutMobileBtn = document.getElementById('logoutMobileBtn');
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    logoutMobileBtn.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>
