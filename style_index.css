@@ -280,4 +280,54 @@ li:hover {
   }
 
   .container {
-    max-width: 100%;
+    max-width: 100%;          /* Utiliser toute la largeur disponible */
+    padding: 30px 20px;       /* Réduire un peu le padding */
+    border-radius: 16px;      /* Arrondis un peu moins grands */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  textarea {
+    min-height: 120px;
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 14px 28px;
+    border-radius: 14px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    padding-bottom: 8px;
+  }
+
+  ul {
+    max-height: 280px;
+    gap: 10px;
+  }
+
+  li {
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-radius: 12px;
+  }
+
+  .note-date {
+    font-size: 0.8rem;
+    margin-left: 12px;
+  }
+
+  .delete-btn {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    margin-left: 12px;
+  }
+}
