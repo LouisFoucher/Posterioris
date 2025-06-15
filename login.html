@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexion</title>
+  <link rel="stylesheet" href="style_login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1>Connexion</h1>
+
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêche l'envoi classique du formulaire
+      // Ici tu pourrais ajouter vérification des identifiants si besoin
+      window.location.href = 'index.html'; // Redirection vers la page principale
+    });
+  </script>
+</body>
+</html>
