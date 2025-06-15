@@ -2,52 +2,66 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mes Notes du Temps</title>
-  <link rel="stylesheet" href="style_index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes</title>
+  
+  <!-- CSS desktop uniquement sur écrans larges -->
+  <link rel="stylesheet" href="style-desktop.css" media="screen and (min-width: 601px)" />
+  
+  <!-- CSS mobile uniquement sur écrans étroits -->
+  <link rel="stylesheet" href="style-mobile.css" media="screen and (max-width: 600px)" />
 </head>
 <body>
-  <div class="container">
-    <h1>Il m'arrive toujours des bonnes choses !!!</h1>
 
-    <textarea id="noteInput" placeholder="Écris ta note ici..."></textarea>
-    <button id="saveBtn">Envoyer</button>
+  <!-- Bouton déconnexion visible uniquement desktop -->
+  <button id="logoutBtn">Déconnexion</button>
 
-    <h2>Mes notes :</h2>
-    <ul id="notesList"></ul>
-  </div>
-
-  <!-- Bouton déconnexion classique (visible desktop uniquement) -->
-  <button id="logoutBtn" onclick="window.location.href='login.html'">Déconnexion</button>
-
-  <!-- Bouton hamburger (mobile) -->
+  <!-- Bouton hamburger visible uniquement mobile -->
   <button id="hamburgerBtn" aria-label="Menu">&#9776;</button>
 
-  <!-- Menu mobile caché -->
-  <nav id="mobileMenu" class="hidden" aria-label="Menu mobile">
+  <!-- Menu mobile caché par défaut -->
+  <nav id="mobileMenu" aria-hidden="true" role="menu">
     <ul>
-      <li><button id="logoutMobileBtn">Déconnexion</button></li>
+      <li><button id="logoutMobileBtn" role="menuitem">Déconnexion</button></li>
+      <!-- Ici tu peux ajouter d'autres liens/menu -->
     </ul>
   </nav>
 
-  <script src="script.js"></script>
+  <main class="container" role="main">
+    <h1>Mes notes</h1>
+
+    <textarea id="noteInput" placeholder="Écris ta note ici..."></textarea>
+    <button id="addNoteBtn">Ajouter la note</button>
+
+    <h2>Liste des notes</h2>
+    <ul id="notesList">
+      <!-- Les notes apparaîtront ici -->
+    </ul>
+  </main>
+
   <script>
+    // Gestion du menu hamburger mobile
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    const logoutMobileBtn = document.getElementById('logoutMobileBtn');
 
     hamburgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const isOpen = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = isOpen ? 'none' : 'block';
+      mobileMenu.setAttribute('aria-hidden', isOpen);
     });
 
+    // Exemple de gestion du bouton déconnexion mobile
+    const logoutMobileBtn = document.getElementById('logoutMobileBtn');
     logoutMobileBtn.addEventListener('click', () => {
-      window.location.href = 'login.html';
+      alert('Déconnexion mobile cliquée');
+      // Ajoute ta logique de déconnexion ici
     });
 
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-        mobileMenu.classList.add('hidden');
-      }
+    // Exemple bouton déconnexion desktop
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', () => {
+      alert('Déconnexion desktop cliquée');
+      // Ajoute ta logique de déconnexion ici
     });
   </script>
 </body>
